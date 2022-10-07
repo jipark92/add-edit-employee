@@ -14,6 +14,8 @@ function App() {
   const [employeesProfile, setEmployeesProfile] = useState(employeesList)
   const [salaryValue, setSalaryValue] = useState()
 
+  console.log(employeesProfile)
+
   const tableHeaderLabel = Object.keys(...employeesList)
 
   const saveSalary = (i, id, employees) => {

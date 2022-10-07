@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 
 export default function AddEmployee({ employeesProfile, setEmployeesProfile }) {
 
-    let newProfileId = 2
+    const [newProfileId, setNewProfileId] = useState(3)
+    let id = 2
     const [newProfileName, setNewProfileName] = useState('')
     const [newProfilePosition, setNewProfilePosition] = useState('')
     const [newProfileSalary, setNewProfileSalary] = useState('')
@@ -40,7 +41,7 @@ export default function AddEmployee({ employeesProfile, setEmployeesProfile }) {
                 <button
                     onClick={() => {
                         setEmployeesProfile([...employeesProfile, {
-                            id: newProfileId++,
+                            // id: id++,
                             name: newProfileName,
                             position: newProfilePosition,
                             salary: newProfileSalary
