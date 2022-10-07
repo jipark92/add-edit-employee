@@ -9,15 +9,18 @@ function App() {
   const title = "Editable Table"
 
   const employeesList = [
-    { id: 0, Name: 'Chris Match', Position: 'Software Developer', Salary: 60000 },
-    { id: 1, Name: 'Sarah Doe', Position: 'Consultant', Salary: 30000 },
-    { id: 2, Name: 'Ben Sear', Position: 'Project Manager', Salary: 10000 },
+    { id: 0, name: 'Chris Match', position: 'Software Developer', salary: 60000 },
+    { id: 1, name: 'Sarah Doe', position: 'Consultant', salary: 30000 },
+    { id: 2, name: 'Ben Sear', position: 'Project Manager', salary: 10000 },
   ]
 
   const tableHeaderLabel = Object.keys(...employeesList)
 
-  const saveSalary = () => {
-
+  const saveSalary = (i, id, employees) => {
+    if (i === id) {
+      console.log('saved')
+      return { ...employees, salary: salaryValue }
+    }
   }
 
   return (
@@ -29,28 +32,29 @@ function App() {
             <th>{tableHeaderLabel[1]}</th>
             <th>{tableHeaderLabel[2]}</th>
             <th>{tableHeaderLabel[3]}</th>
-            <th>Action</th>
+            <th>action</th>
           </tr>
         </thead>
         <tbody>
-          {employeesList.map((employees) => {
-            const { id, Name, Position, Salary } = employees
+          {employeesList.map((employees, i) => {
+            const { id, name, position, salary } = employees
             return (
               <tr key={id}>
-                <td>{Name}</td>
-                <td>{Position}</td>
+                <td>{name}</td>
+                <td>{position}</td>
                 <td><input
                   type="number"
-                  defaultValue={Salary}
+                  defaultValue={salary}
                   onChange={(e) => {
                     setSalaryValue(e.target.value)
                   }}
                 />
                 </td>
-                <td><button>Save</button></td>
+                <td><button
+                  onClick={() => { saveSalary(i, id, employees) }}
+                >Save</button></td>
               </tr>)
           })}
-          {/* add user */}
           <AddEmployee />
         </tbody>
       </table>
