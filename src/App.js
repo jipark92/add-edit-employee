@@ -1,16 +1,24 @@
 import './App.css';
 import AddEmployee from './components/AddEmployee';
-import Employee from './components/Employee';
+import { useState } from 'react'
 
 function App() {
+
+  const [salaryValue, setSalaryValue] = useState()
 
   const title = "Editable Table"
 
   const employeesList = [
-    { id: 0, name: 'chris match', position: 'software developer', salary: 60000 },
-    { id: 1, name: 'sarah doe', position: 'software developer', salary: 30000 },
-    { id: 2, name: 'ben sear', position: 'software developer', salary: 10000 },
+    { id: 0, Name: 'Chris Match', Position: 'Software Developer', Salary: 60000 },
+    { id: 1, Name: 'Sarah Doe', Position: 'Consultant', Salary: 30000 },
+    { id: 2, Name: 'Ben Sear', Position: 'Project Manager', Salary: 10000 },
   ]
+
+  const tableHeaderLabel = Object.keys(...employeesList)
+
+  const saveSalary = () => {
+
+  }
 
   return (
     <div className="App">
@@ -18,20 +26,27 @@ function App() {
       <table border="1" >
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Salary</th>
+            <th>{tableHeaderLabel[1]}</th>
+            <th>{tableHeaderLabel[2]}</th>
+            <th>{tableHeaderLabel[3]}</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {employeesList.map((employees) => {
-            const { id, name, position, salary } = employees
+            const { id, Name, Position, Salary } = employees
             return (
               <tr key={id}>
-                <td>{name}</td>
-                <td>{position}</td>
-                <td>{salary}</td>
+                <td>{Name}</td>
+                <td>{Position}</td>
+                <td><input
+                  type="number"
+                  defaultValue={Salary}
+                  onChange={(e) => {
+                    setSalaryValue(e.target.value)
+                  }}
+                />
+                </td>
                 <td><button>Save</button></td>
               </tr>)
           })}
