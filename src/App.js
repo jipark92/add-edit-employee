@@ -23,6 +23,10 @@ function App() {
     }
   }
 
+  const addProfile = () => {
+
+  }
+
   return (
     <div className="App">
       <h1>{title}</h1>
