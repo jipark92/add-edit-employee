@@ -4,8 +4,6 @@ import { useState } from 'react'
 
 function App() {
 
-  const [salaryValue, setSalaryValue] = useState()
-
   const title = "Editable Table"
 
   const employeesList = [
@@ -13,18 +11,16 @@ function App() {
     { id: 1, name: 'Sarah Doe', position: 'Consultant', salary: 30000 },
     { id: 2, name: 'Ben Sear', position: 'Project Manager', salary: 10000 },
   ]
+  const [employeesProfile, setEmployeesProfile] = useState(employeesList)
+  const [salaryValue, setSalaryValue] = useState()
 
   const tableHeaderLabel = Object.keys(...employeesList)
 
   const saveSalary = (i, id, employees) => {
     if (i === id) {
-      console.log('saved')
+      console.log(id, 'saved')
       return { ...employees, salary: salaryValue }
     }
-  }
-
-  const addProfile = () => {
-
   }
 
   return (
@@ -40,7 +36,7 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {employeesList.map((employees, i) => {
+          {employeesProfile.map((employees, i) => {
             const { id, name, position, salary } = employees
             return (
               <tr key={id}>
@@ -59,7 +55,10 @@ function App() {
                 >Save</button></td>
               </tr>)
           })}
-          <AddEmployee />
+          <AddEmployee
+            employeesProfile={employeesProfile}
+            setEmployeesProfile={setEmployeesProfile}
+          />
         </tbody>
       </table>
     </div>
