@@ -1,4 +1,5 @@
 import './App.css';
+import AddEmployee from './components/AddEmployee';
 import Employee from './components/Employee';
 
 function App() {
@@ -13,9 +14,31 @@ function App() {
 
   return (
     <div className="App">
-      <Employee
-        title={title}
-      />
+      <h1>{title}</h1>
+      <table border="1" >
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Salary</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {employeesList.map((employees) => {
+            const { id, name, position, salary } = employees
+            return (
+              <tr key={id}>
+                <td>{name}</td>
+                <td>{position}</td>
+                <td>{salary}</td>
+                <td><button>Save</button></td>
+              </tr>)
+          })}
+          {/* add user */}
+          <AddEmployee />
+        </tbody>
+      </table>
     </div>
   );
 }
