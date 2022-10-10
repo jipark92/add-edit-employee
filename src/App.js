@@ -1,4 +1,3 @@
-import './App.css';
 import AddEmployee from './components/AddEmployee';
 import { useState } from 'react'
 
